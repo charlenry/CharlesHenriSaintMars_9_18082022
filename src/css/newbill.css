@@ -10,6 +10,8 @@
 
 .col-half-row {
   display:flex;
+  /* La ligne qui suit permet d'aligner la ligne TVA avec les autres champs */
+  justify-content: center;
   width: 75%;
   margin-left: 20px;
   margin-top: 16px;

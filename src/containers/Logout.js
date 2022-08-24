@@ -5,7 +5,8 @@ export default class Logout {
     this.document = document
     this.onNavigate = onNavigate
     this.localStorage = localStorage
-    $('#layout-disconnect').click(this.handleClick)
+    /* Sur la ligne qui suit, j'ai remplacé la fonction jQuery click() par la fonction on() */
+    $('#layout-disconnect').on("click", this.handleClick)
   }
   
   handleClick = (e) => {

@@ -15,31 +15,43 @@ export default class NewBill {
     this.billId = null
     new Logout({ document, localStorage, onNavigate })
   }
+
   handleChangeFile = e => {
     e.preventDefault()
-    const file = this.document.querySelector(`input[data-testid="file"]`).files[0]
-    const filePath = e.target.value.split(/\\/g)
-    const fileName = filePath[filePath.length-1]
-    const formData = new FormData()
-    const email = JSON.parse(localStorage.getItem("user")).email
-    formData.append('file', file)
-    formData.append('email', email)
+    const patternFileExt = /(\.jpg)|(jpeg)|(\.png)|(\.gif)/;
+    const file = this.document.querySelector(`input[data-testid="file"]`).files[0];
+    const fileExtension = file.name.substr(-4);
+    const patternResult = patternFileExt.test(fileExtension);
 
-    this.store
-      .bills()
-      .create({
-        data: formData,
-        headers: {
-          noContentType: true
-        }
-      })
-      .then(({fileUrl, key}) => {
-        console.log(fileUrl)
-        this.billId = key
-        this.fileUrl = fileUrl
-        this.fileName = fileName
-      }).catch(error => console.error(error))
+    /* Ajout du contrôle de l'extension du fichier de justificatif */
+    if(patternResult === true) {
+      const filePath = e.target.value.split(/\\/g);
+      const fileName = filePath[filePath.length-1];
+      const formData = new FormData();
+      const email = JSON.parse(localStorage.getItem("user")).email;
+      formData.append('file', file);
+      formData.append('email', email);
+  
+      this.store
+        .bills()
+        .create({
+          data: formData,
+          headers: {
+            noContentType: true
+          }
+        })
+        .then(({fileUrl, key}) => {
+          console.log(fileUrl)
+          this.billId = key
+          this.fileUrl = fileUrl
+          this.fileName = fileName
+        }).catch(error => console.error(error))
+    } else {
+      alert("Veuillez sélectionner un fichier avec l'une des extensions suivantes\n.jpg, .jpeg, .png, .gif");
+      this.document.querySelector(`input[data-testid="file"]`).value = '';
+    }
   }
+
   handleSubmit = e => {
     e.preventDefault()
     console.log('e.target.querySelector(`input[data-testid="datepicker"]`).value', e.target.querySelector(`input[data-testid="datepicker"]`).value)

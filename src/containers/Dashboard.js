@@ -72,9 +72,10 @@ export default class {
     this.document = document
     this.onNavigate = onNavigate
     this.store = store
-    $('#arrow-icon1').click((e) => this.handleShowTickets(e, bills, 1))
-    $('#arrow-icon2').click((e) => this.handleShowTickets(e, bills, 2))
-    $('#arrow-icon3').click((e) => this.handleShowTickets(e, bills, 3))
+    /* Partout dans ce fichier, j'ai remplacé la fonction jQuery click() par la fonction on() */
+    $('#arrow-icon1').on("click", false, (e1) => this.handleShowTickets(e1, bills, 1));
+    $('#arrow-icon2').on("click", false, (e2) => this.handleShowTickets(e2, bills, 2));
+    $('#arrow-icon3').on("click", false, (e3) => this.handleShowTickets(e3, bills, 3));
     new Logout({ localStorage, onNavigate })
   }
 
@@ -85,17 +86,18 @@ export default class {
     if (typeof $('#modaleFileAdmin1').modal === 'function') $('#modaleFileAdmin1').modal('show')
   }
 
-  handleEditTicket(e, bill, bills) {
-    if (this.counter === undefined || this.id !== bill.id) this.counter = 0
+  handleEditTicket(e, bill, bills, index) {
+    e.stopImmediatePropagation()
+    // if (this.counter === undefined || this.id !== bill.id) this.counter = 0
     if (this.id === undefined || this.id !== bill.id) this.id = bill.id
-    if (this.counter % 2 === 0) {
+    if (index >= 1) {
       bills.forEach(b => {
         $(`#open-bill${b.id}`).css({ background: '#0D5AE5' })
       })
       $(`#open-bill${bill.id}`).css({ background: '#2A2B35' })
       $('.dashboard-right-container div').html(DashboardFormUI(bill))
       $('.vertical-navbar').css({ height: '150vh' })
-      this.counter ++
+      // this.counter ++
     } else {
       $(`#open-bill${bill.id}`).css({ background: '#0D5AE5' })
 
@@ -103,11 +105,11 @@ export default class {
         <div id="big-billed-icon" data-testid="big-billed-icon"> ${BigBilledIcon} </div>
       `)
       $('.vertical-navbar').css({ height: '120vh' })
-      this.counter ++
+      // this.counter ++
     }
-    $('#icon-eye-d').click(this.handleClickIconEye)
-    $('#btn-accept-bill').click((e) => this.handleAcceptSubmit(e, bill))
-    $('#btn-refuse-bill').click((e) => this.handleRefuseSubmit(e, bill))
+    $('#icon-eye-d').on("click", false, this.handleClickIconEye)
+    $('#btn-accept-bill').on("click", false, (e) => this.handleAcceptSubmit(e, bill))
+    $('#btn-refuse-bill').on("click", false, (e) => this.handleRefuseSubmit(e, bill))
   }
 
   handleAcceptSubmit = (e, bill) => {
@@ -131,6 +133,7 @@ export default class {
   }
 
   handleShowTickets(e, bills, index) {
+    e.stopImmediatePropagation()
     if (this.counter === undefined || this.index !== index) this.counter = 0
     if (this.index === undefined || this.index !== index) this.index = index
     if (this.counter % 2 === 0) {
@@ -146,7 +149,8 @@ export default class {
     }
 
     bills.forEach(bill => {
-      $(`#open-bill${bill.id}`).click((e) => this.handleEditTicket(e, bill, bills))
+      /* Ajout du paramètre index */
+      $(`#open-bill${bill.id}`).on("click", false, (e) => this.handleEditTicket(e, bill, bills, this.index))
     })
 
     return bills
@@ -159,7 +163,15 @@ export default class {
       .bills()
       .list()
       .then(snapshot => {
-        const bills = snapshot
+        /* Ajout de la fonction de tri descendant */
+        let snapshotSortedByDesc = Array.from(snapshot).sort((a,b) => {
+          let x = a.date.toLowerCase();
+          let y = b.date.toLowerCase();
+          if (x < y) {return 1;};
+          if (x > y) {return -1;};
+          return 0;
+        });
+        const bills = snapshotSortedByDesc
         .map(doc => ({
           id: doc.id,
           ...doc,

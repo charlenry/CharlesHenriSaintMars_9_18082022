@@ -27,6 +27,10 @@
   position: absolute;
   left: 120px;
   top: 52px;
+  /* Les 3 lignes suivantes résolvent le problème de cassure de l'interface dûe au déploiement de plusieurs listes */
+  height: 110vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .status-bills-container {

@@ -6,6 +6,7 @@ import LoginUI from "../views/LoginUI";
 import Login from "../containers/Login.js";
 import { ROUTES } from "../constants/routes";
 import { fireEvent, screen } from "@testing-library/dom";
+import "@testing-library/jest-dom";
 
 describe("Given that I am a user on login page", () => {
   describe("When I do not fill fields and I click on employee button Login In", () => {
@@ -23,7 +24,7 @@ describe("Given that I am a user on login page", () => {
 
       form.addEventListener("submit", handleSubmit);
       fireEvent.submit(form);
-      expect(screen.getByTestId("form-employee")).toBeTruthy();
+      expect(screen.getByTestId("form-employee")).toBeInTheDocument();
     });
   });
 
