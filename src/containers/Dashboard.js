@@ -164,8 +164,8 @@ export default class {
       .then(snapshot => {
         /* Ajout de la fonction de tri descendant */
         let snapshotSortedByDesc = Array.from(snapshot).sort((a,b) => {
-          let x = a.date.toLowerCase();
-          let y = b.date.toLowerCase();
+          let x = a.date;
+          let y = b.date;
           if (x < y) {return 1;};
           if (x > y) {return -1;};
           return 0;

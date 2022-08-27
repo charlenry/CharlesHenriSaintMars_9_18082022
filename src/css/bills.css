@@ -3,6 +3,10 @@
   margin-top: 76px; 
   margin-left: 76px; 
   margin-right: 76px;
+  /* Les 3 lignes suivantes résolvent le problème de cassure de l'interface dûe au déploiement de plusieurs listes */
+  height: 110vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .content-inner {

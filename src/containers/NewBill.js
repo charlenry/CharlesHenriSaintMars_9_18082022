@@ -7,7 +7,7 @@ export default class NewBill {
     this.onNavigate = onNavigate
     this.store = store
     const formNewBill = this.document.querySelector(`form[data-testid="form-new-bill"]`)
-    formNewBill.addEventListener("submit", this.handleSubmit)
+    formNewBill.addEventListener("submit", this.handleFormValidation)
     const file = this.document.querySelector(`input[data-testid="file"]`)
     file.addEventListener("change", this.handleChangeFile)
     this.fileUrl = null
@@ -16,12 +16,29 @@ export default class NewBill {
     new Logout({ document, localStorage, onNavigate })
   }
 
+  /* Ajout d'un contrôle de validation du formulaire */
+  handleFormValidation = (e) => {
+    const form = this.document.querySelector(".needs-validation");
+  
+    if (!form.checkValidity()) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    form.classList.add("was-validated");
+  
+    if (form.checkValidity()) {
+      this.handleSubmit(e);
+    }
+  }
+
   handleChangeFile = e => {
     e.preventDefault()
     const patternFileExt = /(\.jpg)|(jpeg)|(\.png)|(\.gif)/;
     const file = this.document.querySelector(`input[data-testid="file"]`).files[0];
+    const $file = this.document.querySelector(`input[data-testid="file"]`);
     const fileExtension = file.name.substr(-4);
     const patternResult = patternFileExt.test(fileExtension);
+    const form = this.document.querySelector(".needs-validation");
 
     /* Ajout du contrôle de l'extension du fichier de justificatif */
     if(patternResult === true) {
@@ -31,8 +48,9 @@ export default class NewBill {
       const email = JSON.parse(localStorage.getItem("user")).email;
       formData.append('file', file);
       formData.append('email', email);
-  
-      this.store
+
+      if (confirm(`Confirmez-vous le choix du format de ce justificatif ci-dessous ?\n  "${fileName}"\n\n Aussi, assurez-vous d'avoir rempli tous les champs obligatoires.`) && form.checkValidity()) {
+        this.store
         .bills()
         .create({
           data: formData,
@@ -46,14 +64,17 @@ export default class NewBill {
           this.fileUrl = fileUrl
           this.fileName = fileName
         }).catch(error => console.error(error))
+      } else {
+        $file.value = '';
+      }
     } else {
+      $file.value = '';
       alert("Veuillez sélectionner un fichier avec l'une des extensions suivantes\n.jpg, .jpeg, .png, .gif");
-      this.document.querySelector(`input[data-testid="file"]`).value = '';
     }
   }
 
   handleSubmit = e => {
-    e.preventDefault()
+    // e.preventDefault()
     console.log('e.target.querySelector(`input[data-testid="datepicker"]`).value', e.target.querySelector(`input[data-testid="datepicker"]`).value)
     const email = JSON.parse(localStorage.getItem("user")).email
     const bill = {

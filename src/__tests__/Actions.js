@@ -2,9 +2,9 @@
  * @jest-environment jsdom
  */
 
-import { screen } from "@testing-library/dom"
-import Actions from "../views/Actions.js"
-import '@testing-library/jest-dom/extend-expect'
+ import { screen } from "@testing-library/dom"
+ import '@testing-library/jest-dom/extend-expect'
+ import Actions from "../views/Actions.js"
 
 
 describe('Given I am connected as an Employee', () => {

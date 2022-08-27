@@ -2,9 +2,12 @@
  * @jest-environment jsdom
  */
 
-import { screen } from "@testing-library/dom"
-import NewBillUI from "../views/NewBillUI.js"
-import NewBill from "../containers/NewBill.js"
+ import { screen } from "@testing-library/dom"
+ import "@testing-library/jest-dom"
+ import userEvent from '@testing-library/user-event'
+ import NewBillUI from "../views/NewBillUI.js"
+ import NewBill from "../containers/NewBill.js"
+ import { formatDate } from "../app/format.js"
 
 
 describe("Given I am connected as an employee", () => {
