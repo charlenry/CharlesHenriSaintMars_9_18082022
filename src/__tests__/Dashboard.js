@@ -10,11 +10,11 @@
  import Dashboard, { filteredBills, cards } from "../containers/Dashboard.js"
  import { ROUTES, ROUTES_PATH } from "../constants/routes"
  import { localStorageMock } from "../__mocks__/localStorage.js"
- import mockStore from "../__mocks__/store"
+ import mockedBills from "../__mocks__/store"
  import { bills } from "../fixtures/bills"
  import router from "../app/Router"
 
-jest.mock("../app/store", () => mockStore)
+jest.mock("../app/Store.js", () => mockedBills)
 
 describe('Given I am connected as an Admin', () => {
   describe('When I am on Dashboard page, there are bills, and there is one pending', () => {
@@ -29,10 +29,10 @@ describe('Given I am connected as an Admin', () => {
       expect(filtered_bills.length).toBe(1)
     })
   })
-  describe('When I am on Dashboard page, there are bills, and there is two refused', () => {
-    test('Then, filteredBills by accepted status should return 2 bills', () => {
+  describe('When I am on Dashboard page, there are bills, and there is three refused', () => {
+    test('Then, filteredBills by accepted status should return 3 bills', () => {
       const filtered_bills = filteredBills(bills, "refused")
-      expect(filtered_bills.length).toBe(2)
+      expect(filtered_bills.length).toBe(3)
     })
   })
   describe('When I am on Dashboard page but it is loading', () => {
@@ -254,13 +254,13 @@ describe("Given I am a user connected as Admin", () => {
       await waitFor(() => screen.getByText("Validations"))
       const contentPending  = await screen.getByText("En attente (1)")
       expect(contentPending).toBeTruthy()
-      const contentRefused  = await screen.getByText("Refusé (2)")
+      const contentRefused  = await screen.getByText("Refusé (3)")
       expect(contentRefused).toBeTruthy()
       expect(screen.getByTestId("big-billed-icon")).toBeTruthy()
     })
   describe("When an error occurs on API", () => {
     beforeEach(() => {
-      jest.spyOn(mockStore, "bills")
+      jest.spyOn(mockedBills, "bills")
       Object.defineProperty(
           window,
           'localStorage',
@@ -277,7 +277,7 @@ describe("Given I am a user connected as Admin", () => {
     })
     test("fetches bills from an API and fails with 404 message error", async () => {
 
-      mockStore.bills.mockImplementationOnce(() => {
+      mockedBills.bills.mockImplementationOnce(() => {
         return {
           list : () =>  {
             return Promise.reject(new Error("Erreur 404"))
@@ -291,7 +291,7 @@ describe("Given I am a user connected as Admin", () => {
 
     test("fetches messages from an API and fails with 500 message error", async () => {
 
-      mockStore.bills.mockImplementationOnce(() => {
+      mockedBills.bills.mockImplementationOnce(() => {
         return {
           list : () =>  {
             return Promise.reject(new Error("Erreur 500"))

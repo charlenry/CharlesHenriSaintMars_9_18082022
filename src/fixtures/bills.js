@@ -57,5 +57,20 @@ export const bills = [{
   "commentary": "test2",
   "type": "Restaurants et bars",
   "fileUrl": "https://test.storage.tld/v0/b/billable-677b6.a…f-1.jpg?alt=media&token=4df6ed2c-12c8-42a2-b013-346c1346f732"
+},
+{
+  "id": "acLM3SzECpOZAGRrHnYR",
+  "status": "refused",
+  "pct": 20,
+  "amount": 250,
+  "email": "a@a",
+  "name": "test5",
+  "vat": "45",
+  "fileName": "",
+  "date": "2005-05-05",
+  "commentAdmin": "pas de justificatif",
+  "commentary": "test2",
+  "type": "Restaurants et bars",
+  "fileUrl": "https://test.storage.tld/null"
 }
 ]

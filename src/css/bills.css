@@ -54,8 +54,9 @@
   border: 2px solid #F3F5FA;
   box-sizing: border-box;
   border-radius: 10px;
-  padding-bottom: 16px;
-  height: 70vh;
+  /* Correction d'un bug d'affichage */
+  /* padding-bottom: 16px; */
+  /* height: 70vh; */
 }
 
 .icon-actions {
@@ -65,6 +66,11 @@
   -ms-flex-pack: justify;
   justify-content: space-around;
   align-items: center;
+}
+
+/* Correction d'un bug d'affichage */
+.table {
+  margin-bottom: 0px !important;
 }
 
 .table td, .table th {
