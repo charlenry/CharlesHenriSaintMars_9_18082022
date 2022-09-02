@@ -80,6 +80,16 @@
   cursor: pointer;
 }
 
+/* Correction d'un bug d'affichage */
+.modal-content {
+  width: 1140px !important;
+}
+
+/* Correction d'un bug d'affichage */
+.bill-proof-container {
+  overflow: auto !important;
+}
+
 .name-price-container {
   font-style: normal;
   font-weight: 300;
