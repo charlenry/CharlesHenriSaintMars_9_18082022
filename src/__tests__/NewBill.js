@@ -44,7 +44,7 @@ describe("Given I am connected as an employee", () => {
       expect(screen.getAllByText("Envoyer une note de frais")).toBeTruthy();
     });
 
-    test("Then new bill form should be rendered with 9", () => {
+    test("Then new bill form should be rendered with 9 fields", () => {
       document.body.innerHTML = NewBillUI();
       const formNewBill = screen.getByTestId("form-new-bill");
       expect(formNewBill).toBeTruthy;
@@ -213,6 +213,7 @@ describe("Given I am connected as an employee", () => {
         submit.addEventListener('click', handleSubmit);
         fireEvent.click(submit);
         expect(handleSubmit).toHaveBeenCalled();
+        expect(screen.getAllByText("Mes notes de frais")).toBeTruthy();
       });
     });
 
