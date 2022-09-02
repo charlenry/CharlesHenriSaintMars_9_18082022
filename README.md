@@ -1,3 +1,6 @@
+## Le projet Billed
+Dans le contexte, Billed est une entreprise qui produit des solutions Saas destinées aux équipes de ressources humaines. Dans ce projet, il s'agit de la partie frontend d'une application permettant de *gérer des notes de frais*. D'une part, il y a une interface pour les employés leur permet d'avoir un historique de leurs notes de frais, et de créer de nouvelles notes de frais. D'autre part, il y a une interface pour les administrateurs qui leur permet de valider ou de refuser ou de mettre en attente les notes de frais des employés. Je dois fiabiliser la partie frontend par la correction de bugs et la réalisation de tests.
+
 
 ## L'architecture du projet :
 Ce projet, dit frontend, est connecté à un service API backend que vous devez aussi lancer en local.
