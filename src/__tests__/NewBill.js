@@ -160,7 +160,7 @@ describe("Given I am connected as an employee", () => {
       });
     });
 
-    /* test d'intégration POST new bill */
+    /* Test d'intégration POST new bill */
     describe("I submit a valid bill form", () => {
       test('then a bill is created', async () => {
         Object.defineProperty(window, "localStorage", {

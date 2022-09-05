@@ -17,7 +17,6 @@ import { billsWithErrors } from "../fixtures/bills-with-errors.js";
 import router from "../app/Router.js";
 import store from "../app/Store.js";
 
-
 describe("Given I am connected as an employee", () => {
   describe("When I am on Bills Page", () => {
     test("Then icon-window in vertical layout should be highlighted", async () => {
@@ -79,13 +78,13 @@ describe("Given I am connected as an employee", () => {
       router();
       window.onNavigate(ROUTES_PATH.Bills);
 
-      const bills2 = new Bills({
+      const sampleBills = new Bills({
         document,
         onNavigate,
         store: mockedBills,
         localStorage: window.localStorage,
       });
-      const billsSortedFromGetBills = await bills2.getBills().then((data) => {
+      const billsSortedFromGetBills = await sampleBills.getBills().then((data) => {
         const dataResult = [...data];
         return dataResult;
       });
@@ -94,9 +93,7 @@ describe("Given I am connected as an employee", () => {
         IdsOfBillsSortedFromGetBills.push(bill.id);
       }
 
-      expect(IdsOfBillsSortedFromGetBills).toEqual(
-        IdsOfBillsSortedFromFixtures
-      );
+      expect(IdsOfBillsSortedFromGetBills).toEqual(IdsOfBillsSortedFromFixtures);
 
       /*** Solution sans passer par la methode getBills() ***/
       // document.body.innerHTML = BillsUI({ data: bills });
@@ -129,12 +126,10 @@ describe("Given I am connected as an employee", () => {
   describe("When I am on Bills and there are no bills", () => {
     test("Then, no bills should be shown", () => {
       document.body.innerHTML = BillsUI({ data: [] });
-      expect(screen.getByTestId("tbody")).not.toHaveTextContent(
-        /(pending)|(accepted)|(refused)/i
-      );
+      expect(screen.getByTestId("tbody")).not.toHaveTextContent(/(pending)|(accepted)|(refused)/i);
     });
   });
-  
+
   describe("When I click on the icon eye", () => {
     test("A modal should open and display the attached image", () => {
       document.body.innerHTML = BillsUI({ data: bills });
@@ -158,26 +153,29 @@ describe("Given I am connected as an employee", () => {
       expect(handleClickIconEye).toHaveBeenCalled();
       expect(modale).toHaveClass("show");
 
-      const proof = document.querySelector('.bill-proof-container img');
-      expect(proof).not.toHaveAttribute('src', 'https://test.storage.tld/null');
+      const proof = document.querySelector(".bill-proof-container img");
+      expect(proof).not.toHaveAttribute("src", "https://test.storage.tld/null");
     });
   });
 
   describe("When I click on the New bill button", () => {
     test("Then I should be redirected to new bill form", () => {
-      document.body.innerHTML = BillsUI({ data: bills })
+      document.body.innerHTML = BillsUI({ data: bills });
       const onNavigate = (pathname) => {
         document.body.innerHTML = ROUTES({ pathname });
       };
       const sampleBills = new Bills({
-        document, onNavigate, store: null, localStorage: window.localStorage
-      })
-      const handleClickNewBill = jest.fn(sampleBills.handleClickNewBill)
-      const newBillButton = screen.getByTestId('btn-new-bill')
-      newBillButton.addEventListener('click', handleClickNewBill)
-      userEvent.click(newBillButton)
-      expect(handleClickNewBill).toHaveBeenCalled()
-      expect(screen.getByText('Envoyer une note de frais')).toBeTruthy()
+        document,
+        onNavigate,
+        store: null,
+        localStorage: window.localStorage,
+      });
+      const handleClickNewBill = jest.fn(sampleBills.handleClickNewBill);
+      const newBillButton = screen.getByTestId("btn-new-bill");
+      newBillButton.addEventListener("click", handleClickNewBill);
+      userEvent.click(newBillButton);
+      expect(handleClickNewBill).toHaveBeenCalled();
+      expect(screen.getByText("Envoyer une note de frais")).toBeTruthy();
     });
   });
 
@@ -211,17 +209,17 @@ describe("Given I am connected as an employee", () => {
       });
       document.body.innerHTML = BillsUI({ data: sampleBillsSorted });
       const html = document.body.textContent;
-      const pattern = /\d+[- /.]\d+[- /.]\d+/i;   /* unformatted data */
+      const pattern = /\d+[- /.]\d+[- /.]\d+/i; /* unformatted data */
       const patternResult = pattern.test(html);
       expect(patternResult).toEqual(true);
     });
   });
-
 });
 
 
 jest.mock("../app/Store.js", () => mockedBills);
-// test d'intégration GET
+
+// Test d'intégration GET
 describe("Given I am a user connected as Employee", () => {
   describe("When I navigate to Bills", () => {
     test("fetches bills from mock API GET", async () => {
@@ -236,7 +234,7 @@ describe("Given I am a user connected as Employee", () => {
       expect(iconEye).toBeTruthy();
       const btnNewBill = screen.getByTestId("btn-new-bill");
       expect(btnNewBill).toBeTruthy();
-      const btnLogout = document.getElementById('layout-disconnect');
+      const btnLogout = document.getElementById("layout-disconnect");
       expect(btnLogout).toBeTruthy();
     });
   });
@@ -287,4 +285,3 @@ describe("Given I am a user connected as Employee", () => {
     });
   });
 });
-
