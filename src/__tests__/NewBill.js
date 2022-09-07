@@ -212,7 +212,7 @@ describe("Given I am connected as an employee", () => {
         newBill.fileName = validBill.fileName;
         submit.addEventListener('click', handleSubmit);
         fireEvent.click(submit);
-        expect(handleSubmit).toHaveBeenCalled();
+        expect(handleSubmit).toHaveBeenCalledTimes(1);
         expect(screen.getAllByText("Mes notes de frais")).toBeTruthy();
       });
     });

@@ -222,7 +222,7 @@ jest.mock("../app/Store.js", () => mockedBills);
 // Test d'intégration GET
 describe("Given I am a user connected as Employee", () => {
   describe("When I navigate to Bills", () => {
-    test("fetches bills from mock API GET", async () => {
+    test("I should see the title, btn-new-bill, icon-eye, icon-window, layout-disconnect be rendered", async () => {
       localStorage.setItem("user", JSON.stringify({ type: "Employee", email: "a@a" }));
       const root = document.createElement("div");
       root.setAttribute("id", "root");
@@ -234,6 +234,8 @@ describe("Given I am a user connected as Employee", () => {
       expect(iconEye).toBeTruthy();
       const btnNewBill = screen.getByTestId("btn-new-bill");
       expect(btnNewBill).toBeTruthy();
+      const windowIcon = document.getElementById("layout-icon1");
+      expect(windowIcon).toHaveClass("active-icon");
       const btnLogout = document.getElementById("layout-disconnect");
       expect(btnLogout).toBeTruthy();
     });
