@@ -7,7 +7,7 @@ Ce projet, dit frontend, est connecté à un service API backend que vous devez 
 
 Le projet backend se trouve ici: https://github.com/OpenClassrooms-Student-Center/Billed-app-FR-back
 
-Vous pouvez également télécharger le backend dans le dossier ci-dessus.
+Vous pouvez également télécharger le backend dans le dossier ci-dessus. Pour le lancer, ouvrir une invite de commande dans le dossier du backend et taper : `npm install` puis `npm run run:dev`. L'api est accessible sur le port 5678 en local, c'est à dire `http://localhost:5678`. Si vous êtes sous Windows et qu'il y a le message d'erreur "NODE_ENV is not recognized as an internal or external command", veuillez lancer la commande `npm install -g win-node-env`. Puis relancer `npm run run:dev`.
 
 ## Organiser son espace de travail :
 Pour une bonne organization, vous pouvez créer un dossier bill-app dans lequel vous allez cloner le projet backend et par la suite, le projet frontend:
