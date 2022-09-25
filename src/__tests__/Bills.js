@@ -229,14 +229,21 @@ describe("Given I am a user connected as Employee", () => {
       document.body.append(root);
       router();
       window.onNavigate(ROUTES_PATH.Bills);
+
+      /* On teste la présence du titre de la page*/
       await waitFor(() => screen.getByText("Mes notes de frais"));
-      screen.getByText("test1")
+      /* On test le nom d'une note de frais */
+      screen.getByText("test1");
+      /* 0n teste la présence de l'icone de l'oeil */
       const iconEye = screen.getAllByTestId("icon-eye")[0];
       expect(iconEye).toBeTruthy();
+      /* On teste la présence du bouton 'Nouvelle note de frais */
       const btnNewBill = screen.getByTestId("btn-new-bill");
       expect(btnNewBill).toBeTruthy();
+      /* On teste la présence de l'icone window et qu'elle est en surbrillance */
       const windowIcon = document.getElementById("layout-icon1");
       expect(windowIcon).toHaveClass("active-icon");
+      /* On teste la présence du bouton de déconnexion */
       const btnLogout = document.getElementById("layout-disconnect");
       expect(btnLogout).toBeTruthy();
     });
