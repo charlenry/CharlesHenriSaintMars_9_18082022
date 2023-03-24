@@ -5,30 +5,39 @@ Dans le contexte, Billed est une entreprise qui produit des solutions Saas desti
 ## L'architecture du projet :
 Ce projet, dit frontend, est connecté à un service API backend que vous devez aussi lancer en local.
 
-Le projet backend se trouve ici: https://github.com/OpenClassrooms-Student-Center/Billed-app-FR-back
+Le projet backend se trouve ici: https://github.com/charlenry/Billed-app-FR-Back
 
 Vous pouvez également télécharger le backend dans le dossier ci-dessus. Pour le lancer, ouvrir une invite de commande dans le dossier du backend et taper : `npm install` puis `npm run run:dev`. L'api est accessible sur le port 5678 en local, c'est à dire `http://localhost:5678`. Si vous êtes sous Windows et qu'il y a le message d'erreur "NODE_ENV is not recognized as an internal or external command", veuillez lancer la commande `npm install -g win-node-env`. Puis relancer `npm run run:dev`.
 
 ## Organiser son espace de travail :
-Pour une bonne organization, vous pouvez créer un dossier bill-app dans lequel vous allez cloner le projet backend et par la suite, le projet frontend:
+Pour une bonne organization, vous pouvez créer un dossier Billed-app dans lequel vous allez cloner le projet backend et par la suite, le projet frontend:
 
-Clonez le projet backend dans le dossier bill-app :
+Clonez le projet backend dans le dossier Billed-app :
 ```
-$ git clone https://github.com/OpenClassrooms-Student-Center/Billed-app-FR-Back.git
+$ git clone https://github.com/charlenry/Billed-app-FR-Back.git
 ```
 
 ```
-bill-app/
+Billed-app/
    - Billed-app-FR-Back
 ```
 
-Clonez le projet frontend dans le dossier bill-app :
+Clonez le projet frontend dans le dossier Billed-app :
 ```
-$ git clone https://github.com/OpenClassrooms-Student-Center/Billed-app-FR-Front.git
+$ git clone https://github.com/charlenry/CharlesHenriSaintMars_9_18082022.git
 ```
 
 ```
-bill-app/
+Billed-app/
+   - Billed-app-FR-Back
+   - CharlesHenriSaintMars_9_18082022
+```
+Renommez le dossier `CharlesHenriSaintMars_9_18082022` en `Billed-app-FR-Front`.
+Une version plus récente du backend se trouve dans le dossier `Back-End`. Vous pouvez donc remplacer le contenu du dossier `Billed-app-FR-Back` par le contenu du dossier `Back-End`.
+
+En fin de compte, vous devriez avoir la structure de dossiers suivante :
+```
+Billed-app/
    - Billed-app-FR-Back
    - Billed-app-FR-Front
 ```
