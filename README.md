@@ -39,7 +39,7 @@ En fin de compte, vous devriez avoir la structure de dossiers suivante :
 ```
 Billed-app/
    - Billed-app-FR-Back
-   - Billed-app-FR-Front
+   - Billed-app-FR-Frontend
 ```
 
 ## Comment lancer l'application en local ?
