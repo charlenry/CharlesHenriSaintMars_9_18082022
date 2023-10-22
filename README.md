@@ -4,14 +4,14 @@ Dans le contexte, Billed est une entreprise qui produit des solutions Saas desti
 Je dois fiabiliser la partie frontend par la correction de bugs et la réalisation de tests unitaires, de tests d'intégration et de tests End-to-End manuels. Je dois aussi élaborer le plan des tests manuels End-to-End. La partie backend est fournie sur Github avec les instructions d'installation.
 
 
-## L'architecture du projet :
+## L'architecture du projet
 La partie frontend est connectée à un service API backend que vous devez aussi lancer en local.
 
 Le projet backend se trouve ici: https://github.com/charlenry/Billed-app-FR-Back
 
 Pour lancer le backend, ouvrir une invite de commande dans le dossier du backend et taper : `npm install` puis `npm run run:dev`. L'API est accessible sur le port 5678 en local, c'est à dire `http://localhost:5678`. Si vous êtes sous Windows et qu'il y a le message d'erreur `"NODE_ENV is not recognized as an internal or external command"`, veuillez lancer la commande `npm install -g win-node-env`. Puis relancer `npm run run:dev`.
 
-## Organiser l'installation de l'application :
+## Organiser l'installation de l'application
 Pour une bonne organisation, vous pouvez **créer un dossier Billed-app** dans lequel vous allez cloner la partie backend et par la suite, la partie frontend:
 
 Clonez le projet backend dans le dossier Billed-app :
@@ -46,11 +46,11 @@ Billed-app/
 
 ## Comment lancer l'application en local ?
 
-### étape 1 - Lancer le backend :
+### étape 1 - Lancer le backend
 
 Suivez les indications dans le README du projet backend et/ou aller à la section **L'architecture du projet** ci-dessus.
 
-### étape 2 - Lancer le frontend :
+### étape 2 - Lancer le frontend
 
 Allez au repo cloné :
 ```
@@ -94,16 +94,16 @@ $jest src/__tests__/your_test_file.js
 
 `http://127.0.0.1:8080/coverage/lcov-report/`
 
-## Comptes et utilisateurs :
+## Comptes et utilisateurs
 
 Vous pouvez vous connecter en utilisant les comptes:
 
-### administrateur : 
+### administrateur 
 ```
 utilisateur : admin@test.tld 
 mot de passe : admin
 ```
-### employé :
+### employé
 ```
 utilisateur : employee@test.tld
 mot de passe : employee
