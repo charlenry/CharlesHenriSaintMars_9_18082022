@@ -1,16 +1,18 @@
 ## Le projet Billed
-Dans le contexte, Billed est une entreprise qui produit des solutions Saas destinées aux équipes de ressources humaines. Dans ce projet, il s'agit de la partie frontend d'une application permettant de `gérer des notes de frais`. D'une part, il y a une interface pour les employés qui leur permet d'avoir un historique de leurs notes de frais, et de créer de nouvelles notes de frais. D'autre part, il y a une interface pour les administrateurs qui leur permet de valider ou de refuser ou de mettre en attente les notes de frais des employés. `Je dois fiabiliser la partie frontend par la correction de bugs et la réalisation de tests`.
+Dans le contexte, Billed est une entreprise qui produit des solutions Saas destinées aux équipes de ressources humaines. Dans ce projet, il s'agit de la partie frontend d'une application permettant de `gérer des notes de frais`. D'une part, il y a une interface pour les employés qui leur permet d'avoir un historique de leurs notes de frais, et de créer de nouvelles notes de frais. D'autre part, il y a une interface pour les administrateurs qui leur permet de valider ou de refuser ou de mettre en attente les notes de frais des employés. 
+
+Je dois fiabiliser la partie frontend par la correction de bugs et la réalisation de tests unitaires, de tests d'intégration et de tests End-to-End manuels. Je dois aussi élaborer le plan des tests manuels End-to-End. La partie backend est fournie sur Github avec les instructions d'installation.
 
 
 ## L'architecture du projet :
-Ce projet, dit frontend, est connecté à un service API backend que vous devez aussi lancer en local.
+La partie frontend est connectée à un service API backend que vous devez aussi lancer en local.
 
 Le projet backend se trouve ici: https://github.com/charlenry/Billed-app-FR-Back
 
-Pour le lancer, ouvrir une invite de commande dans le dossier du backend et taper : `npm install` puis `npm run run:dev`. L'api est accessible sur le port 5678 en local, c'est à dire `http://localhost:5678`. Si vous êtes sous Windows et qu'il y a le message d'erreur "NODE_ENV is not recognized as an internal or external command", veuillez lancer la commande `npm install -g win-node-env`. Puis relancer `npm run run:dev`.
+Pour lancer le backend, ouvrir une invite de commande dans le dossier du backend et taper : `npm install` puis `npm run run:dev`. L'API est accessible sur le port 5678 en local, c'est à dire `http://localhost:5678`. Si vous êtes sous Windows et qu'il y a le message d'erreur `"NODE_ENV is not recognized as an internal or external command"`, veuillez lancer la commande `npm install -g win-node-env`. Puis relancer `npm run run:dev`.
 
-## Organiser son espace de travail :
-Pour une bonne organization, vous pouvez créer un dossier Billed-app dans lequel vous allez cloner le projet backend et par la suite, le projet frontend:
+## Organiser l'installation de l'application :
+Pour une bonne organisation, vous pouvez **créer un dossier Billed-app** dans lequel vous allez cloner la partie backend et par la suite, la partie frontend:
 
 Clonez le projet backend dans le dossier Billed-app :
 ```
@@ -46,7 +48,7 @@ Billed-app/
 
 ### étape 1 - Lancer le backend :
 
-Suivez les indications dans le README du projet backend.
+Suivez les indications dans le README du projet backend et/ou aller à la section **L'architecture du projet** ci-dessus.
 
 ### étape 2 - Lancer le frontend :
 
